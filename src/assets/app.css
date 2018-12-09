@@ -1,0 +1,82 @@
+.full-width {
+    width:100%;
+}
+.header {
+    font-size:24px;
+    padding:20px;
+    text-align:center;
+    border-bottom:3px solid #000;
+    font-weight:bold;
+}
+
+.container ul {
+    list-style:none;
+    margin:0;
+    padding:0
+}
+
+.container li {
+    padding:20px;
+    font-size:16px;
+    border-bottom:1px solid #ccc;
+}
+
+.edit-btn {
+    display:block;
+    float:right;
+    border:1px solid #ccc;
+}
+
+.add-btn {
+    position:fixed;
+    display:block;
+    width:100%;
+    padding:20px;
+    bottom:0;
+    left:0;
+    font-size:18px;
+    font-weight:bold;
+    background:#31b0d5;
+    color:#fff;
+    border:0;
+}
+
+.write {
+    padding:10px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+input, textarea {
+    margin-bottom:10px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    border:1px solid #ccc;
+}
+.write input {
+    width:100%;
+    padding:0 10px;
+    height:26px;
+    line-height:26px;
+    display:block;
+}
+.write textarea {
+    width:100%;
+    height:300px;
+    padding:10px;
+}
+.write .btn {
+    display:inline-block;
+    height:40px;
+    line-height:40px;
+    width:49%;
+    text-align:center;
+}
+.write .save-btn {
+    background:#31b0d5;
+    color:#fff;
+}
+.write .cancel {
+    border:1px solid #ccc;
+}
