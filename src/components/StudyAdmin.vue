@@ -5,20 +5,23 @@
             <div class="list" v-if="mode === 'list'">
                 <ul>
                     <li v-for="m in memos">
-                        <div>
-                            <h3>{{ m.title }}</h3>
+                        <div class="contents-text-wrapper">
+                            <h3 v-on:click="toggle(m)" v-bind:class="{ active: isActive }">{{ m.title }}</h3>
                             <p>{{ m.content }}</p>
                         </div>
-                        <button type="button" class="btn edit-btn" v-on:click="open(m.id)">수정</button>
+                        <div class="btn-wrap">
+                            <button type="button" class="btn edit-btn" v-on:click="open(m.id)">수정</button>
+                            <button type="button" class="btn remove-btn" v-on:click="remove(memos.id)">삭제</button>
+                        </div>
                     </li>
                 </ul>
             </div>
             <div class="write" v-else>
-                <input type="text" v-model="memo.title">
-                <textarea v-model="memo.content" name="" id="" cols="30" rows="10"></textarea>
+                <input type="text" v-model="memo.title" placeholder="제목을 입력하세요.">
+                <textarea v-model="memo.content" name="" id="" cols="30" rows="10" placeholder="내용을 입력하세요."></textarea>
                 <button type="button" class="btn save-btn" v-on:click="save()">저장</button>
-                <button type="button" class="btn cancel-btn" v-on:click="cancel()" v-if="mode === 'write'">취소</button>
-                <button type="button" class="btn remove-btn" v-on:click="remove()" v-if="mode === 'edit'">삭제</button>
+                <button type="button" class="btn cancel-btn" v-on:click="cancel()">취소</button>
+                <!--<button type="button" class="btn remove-btn" v-on:click="removeInEdit()" v-if="mode === 'edit'">삭제</button>-->
             </div>
             <button type="button" class="add-btn" v-on:click="write()" v-if="mode === 'list'">추가</button>
         </div>
@@ -26,8 +29,13 @@
 </template>
 
 <script>
+    import List from './list.vue';
+
     export default {
         name: "StudyAdmin",
+        components: {
+            List
+        },
         data: function () {
             return {
                 mode: 'list',
@@ -40,14 +48,16 @@
                 memos:[
                     {
                         id: 1,
-                        title: 'title',
-                        content: 'memo #1',
+                        title: 'title 1',
+                        content: 'contents memo #1',
                         regDate: new Date()
                     },
-                ]
+                ],
+                isActive: false,
             }
         },
         created: function () {
+
             var memos = localStorage.getItem('memos');
 
             if(memos) {
@@ -104,7 +114,14 @@
                 this.mode = 'list';
                 localStorage.setItem('memos', JSON.stringify(this.memos))
             },
-            remove: function () {
+            remove: function (id) {
+                var index = this.memos.findIndex((item) => item.id === id);
+                if(confirm('삭제 하시겠습니까?')){
+                    this.memos.splice(index, 1);
+                    localStorage.setItem('memos', JSON.stringify(this.memos));
+                }
+            },
+            removeInEdit: function () {
                 if(confirm('삭제 하시겠습니까?')){
                     for(var i in this.memos) {
                         if(this.memos[i].id === this.memo.id) {
@@ -116,9 +133,13 @@
                     this.mode = 'list';
                 }
             },
-            cancel: function () {
+
+    cancel: function () {
                 this.mode = 'list';
             },
+            toggle: function () {
+                this.isActive = !this.isActive;
+            }
         }
     }
 </script>
