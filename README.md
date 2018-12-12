@@ -1,6 +1,6 @@
 # 스터디 메모 (VUE.JS)
 ## 1. webpack - 4.26.0, VUE.JS - 2.5.17
-1. 필수 : Node.js 설치환경에서 실행([Node.js download page](https://nodejs.org/ko/download/, "node.js download page link"))
+1. 필수 : Node.js 설치환경에서 실행([Node.js download page](https://nodejs.org/ko/download/ "node.js download page link"))
 2. npm package 설치
     ```
     npm install
