@@ -5,7 +5,11 @@
     ```
     npm install
     ```
-3. BUILD & local server 실행
+3. BUILD
+    ```
+    npm run build-dev
+    ```
+4. local server 실행
     ```
     npm run dev
     ```
